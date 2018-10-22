@@ -1,0 +1,20 @@
+<resources>
+
+    <declare-styleable name="TooltipView">
+        <attr name="toolTipTitle" format="string"/>
+        <attr name="toolTipMessage" format="string"/>
+        <attr name="toolTipTextColor" format="color"/>
+        <attr name="anchoredView" format="reference"/>
+        <attr name="cornerRadius" format="dimension"/>
+        <attr name="tooltipBgColor" format="color"/>
+        <attr name="arrowHeight" format="dimension"/>
+        <attr name="arrowWidth" format="dimension"/>
+
+        <attr name="arrowLocation" format="integer">
+            <enum name="top" value="0"/>
+            <enum name="bottom" value="1"/>
+        </attr>
+
+    </declare-styleable>
+
+</resources>

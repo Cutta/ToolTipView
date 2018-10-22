@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/header_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Example anchored view"
+            android:background="#220099cc"/>
+
+    <com.cunoraz.tooltipview.TooltipView
+            android:id="@+id/tooltip_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:arrowLocation="top"
+            app:cornerRadius="4dp"
+            app:tooltipBgColor="#279CFF"
+            app:toolTipTitle="ToolBar title"
+            app:toolTipMessage="ToolTip Message sample."
+            app:anchoredView="@+id/header_2"/>
+
+
+    <com.cunoraz.tooltipview.TooltipView
+            android:id="@+id/tooltip_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:arrowLocation="bottom"
+            app:cornerRadius="4dp"
+            app:tooltipBgColor="#279CFF"
+            app:toolTipTitle="ToolBar title"
+            app:toolTipMessage="ToolTip Message sample. Lorem ipsum dolor sit amet lorem ipsum"
+            app:anchoredView="@+id/header_3"/>
+
+    <TextView
+            android:id="@+id/header_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="Example anchored view"
+            android:background="#220099cc"/>
+
+</LinearLayout>

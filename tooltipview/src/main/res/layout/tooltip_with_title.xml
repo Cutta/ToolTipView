@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:background="@android:color/transparent"
+              android:id="@+id/rootLayout"
+              tools:background="#279CFF"
+              android:layout_width="wrap_content"
+              android:padding="16dp"
+              android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:orientation="vertical">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/titleTextView"
+                  android:textSize="14sp"
+                  android:textStyle="bold"
+                  tools:textColor="@android:color/white"
+                  android:textColor="@android:color/white"
+                  tools:text="ToolTip Title"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/messageTextView"
+                  android:textSize="12sp"
+                  android:paddingTop="4dp"
+                  tools:textColor="@android:color/white"
+                  android:textColor="@android:color/white"
+                  tools:text="ToolTip Message sample. Lorem ipsum dolor sit amet lorem ipsum"/>
+
+    </LinearLayout>
+
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="top"
+               tools:tint="@android:color/white"
+               android:src="@drawable/ic_tooltip_close"/>
+
+</LinearLayout>

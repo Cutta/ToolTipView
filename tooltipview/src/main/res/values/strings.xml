@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lib</string>
+    <string name="default_tool_bar_title">Default Title</string>
+    <string name="default_tool_bar_message">Default Message sample</string>
+</resources>
