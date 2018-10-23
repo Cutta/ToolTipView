@@ -34,10 +34,12 @@
 
     </LinearLayout>
 
-    <ImageView android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="top"
-               tools:tint="@android:color/white"
-               android:src="@drawable/ic_tooltip_close"/>
+    <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            tools:tint="@android:color/white"
+            android:src="@drawable/ic_tooltip_close"/>
 
 </LinearLayout>

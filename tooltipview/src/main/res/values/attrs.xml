@@ -10,6 +10,12 @@
         <attr name="arrowHeight" format="dimension"/>
         <attr name="arrowWidth" format="dimension"/>
 
+        <attr name="closeButtonGravity" format="integer">
+            <enum name="top" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="bottom" value="2"/>
+        </attr>
+
         <attr name="arrowLocation" format="integer">
             <enum name="top" value="0"/>
             <enum name="bottom" value="1"/>

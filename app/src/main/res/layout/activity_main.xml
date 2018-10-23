@@ -17,10 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             app:arrowLocation="top"
+            app:closeButtonGravity="bottom"
             app:cornerRadius="4dp"
             app:tooltipBgColor="#279CFF"
-            app:toolTipTitle="ToolBar title"
-            app:toolTipMessage="ToolTip Message sample."
+            app:toolTipMessage="ToolBar title      "
             app:anchoredView="@+id/header_2"/>
 
 
@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             app:arrowLocation="bottom"
+            app:closeButtonGravity="top"
             app:cornerRadius="4dp"
             app:tooltipBgColor="#279CFF"
             app:toolTipTitle="ToolBar title"

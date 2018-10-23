@@ -4,4 +4,5 @@
     <dimen name="tooltip_default_corner_radius">4dp</dimen>
     <dimen name="tooltip_default_offset">0dp</dimen>
     <integer name="tooltip_default_arrow_location">1</integer>
+    <integer name="tooltip_default_close_button_gravity">0</integer>
 </resources>

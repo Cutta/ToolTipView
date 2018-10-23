@@ -14,14 +14,15 @@ internal class BottomArrowLocation : ArrowLocation {
         view.tooltipPath = Path()
         val rectF = RectF(canvas.clipBounds)
         rectF.bottom -= view.arrowHeight.toFloat()
-        view.tooltipPath?.let {
-            it.addRoundRect(rectF, view.cornerRadius.toFloat(), view.cornerRadius.toFloat(), Direction.CW)
+
+        with(view.tooltipPath!!) {
+            addRoundRect(rectF, view.cornerRadius.toFloat(), view.cornerRadius.toFloat(), Direction.CW)
             val middle = ArrowAlignmentHelper.calculateArrowMidPoint(view, rectF)
-            it.moveTo(middle, view.height.toFloat())
+            moveTo(middle, view.height.toFloat())
             val arrowDx = view.arrowWidth / 2
-            it.lineTo(middle - arrowDx, rectF.bottom)
-            it.lineTo(middle + arrowDx, rectF.bottom)
-            it.close()
+            lineTo(middle - arrowDx, rectF.bottom)
+            lineTo(middle + arrowDx, rectF.bottom)
+            close()
         }
 
         view.setPaint(Paint(Paint.ANTI_ALIAS_FLAG))
