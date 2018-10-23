@@ -25,8 +25,9 @@ class TooltipView : LinearLayout {
     private lateinit var messageTextView: TextView
     private lateinit var closeButton: ImageView
 
-    private var arrowPositioning: Int = 0
+    private var arrowPosition: Int = 0
     private var closeButtonGravity: Int = 0
+    private var closeButtonVisibility: Int = 0
     internal var arrowHeight: Int = 0
     internal var arrowWidth: Int = 0
     internal var cornerRadius: Int = 0
@@ -76,15 +77,16 @@ class TooltipView : LinearLayout {
                     R.styleable.TooltipView_arrowWidth,
                     R.dimen.tooltip_default_arrow_width
                 )
-                arrowPositioning = getInteger(
+                arrowPosition = getInteger(
                     R.styleable.TooltipView_arrowLocation,
                     res.getInteger(R.integer.tooltip_default_arrow_location)
                 )
-                arrowLocation = if (arrowPositioning == LOCATION_TOP) TopArrowLocation() else BottomArrowLocation()
+                arrowLocation = if (arrowPosition == LOCATION_TOP) TopArrowLocation() else BottomArrowLocation()
                 closeButtonGravity = getInteger(
                     R.styleable.TooltipView_closeButtonGravity,
                     res.getInteger(R.integer.tooltip_default_close_button_gravity)
                 )
+                closeButtonVisibility = getInteger(R.styleable.TooltipView_closeButtonVisibility, VISIBILITY_VISIBLE)
             }
         } finally {
             typedArray.recycle()
@@ -102,11 +104,21 @@ class TooltipView : LinearLayout {
         messageTextView = findViewById(R.id.messageTextView)
         closeButton = findViewById(R.id.closeButton)
 
+
+        setCloseButtonProperties()
+        setTexts()
+    }
+
+    private fun setCloseButtonProperties() {
+        if (closeButtonVisibility == VISIBILITY_GONE) {
+            closeButton.visibility = View.GONE
+            return
+        }
+
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-
         layoutParams.gravity = when (closeButtonGravity) {
 
             GRAVITY_TOP -> Gravity.TOP
@@ -115,34 +127,31 @@ class TooltipView : LinearLayout {
 
             GRAVITY_BOTTOM -> Gravity.BOTTOM
 
-            else -> {
-                Gravity.TOP
-            }
+            else -> Gravity.TOP
         }
 
         closeButton.layoutParams = layoutParams
-
-
-        setTexts(toolTipTitle, toolTipMessage)
     }
 
-    private fun setTexts(toolTipTitle: String?, toolTipMessage: String?) {
+    private fun setTexts() {
         if (toolTipTitle == null) {
             titleTextView.visibility = View.GONE
         } else {
             titleTextView.text = toolTipTitle
+            titleTextView.visibility = View.VISIBLE
         }
 
         if (toolTipMessage == null) {
             messageTextView.visibility = View.GONE
         } else {
             messageTextView.text = toolTipMessage
+            messageTextView.visibility = View.VISIBLE
         }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (arrowPositioning == LOCATION_TOP) {
+        if (arrowPosition == LOCATION_TOP) {
             setPadding(0, arrowHeight, 0, 0)
         } else {
             setPadding(0, 0, 0, arrowHeight)
@@ -232,10 +241,29 @@ class TooltipView : LinearLayout {
         invalidate()
     }
 
-    fun setArrowPositioning(arrowPositioning: Int) {
-        this.arrowPositioning = arrowPositioning
+    fun setArrowPosition(arrowPosition: Int) {
+        arrowLocation = if (arrowPosition == LOCATION_TOP) TopArrowLocation() else BottomArrowLocation()
+        if (arrowPosition == LOCATION_TOP) { // magic number will be dynamic
+            (findViewById<LinearLayout>(R.id.rootLayout)).setPadding(32, arrowHeight + 32, 32, 0)
+        } else {
+            (findViewById<LinearLayout>(R.id.rootLayout)).setPadding(32, 32, 32, arrowHeight)
+        }
         invalidate()
     }
+
+    fun setTitle(title: String) {
+        titleTextView.text = title
+        titleTextView.visibility = View.VISIBLE
+    }
+
+    fun getTitle() = toolTipTitle
+
+    fun setMessage(message: String) {
+        messageTextView.text = message
+        messageTextView.visibility = View.VISIBLE
+    }
+
+    fun getMessage() = toolTipMessage
 
     private fun getDimension(
         typedArray: TypedArray,
@@ -251,6 +279,10 @@ class TooltipView : LinearLayout {
 
 
     companion object {
+
+        const val VISIBILITY_VISIBLE = 0
+        const val VISIBILITY_GONE = 1
+
         const val LOCATION_TOP = 0
         const val LOCATION_BOTTOM = 1
 

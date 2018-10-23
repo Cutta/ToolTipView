@@ -2,6 +2,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:orientation="vertical"
+              android:id="@+id/mainRootLayout"
               android:layout_height="match_parent">
 
     <TextView
@@ -17,9 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             app:arrowLocation="top"
-            app:closeButtonGravity="bottom"
+            app:closeButtonGravity="top"
             app:cornerRadius="4dp"
             app:tooltipBgColor="#279CFF"
+            app:toolTipTitle="Title"
             app:toolTipMessage="ToolBar title      "
             app:anchoredView="@+id/header_2"/>
 
@@ -32,6 +34,7 @@
             app:arrowLocation="bottom"
             app:closeButtonGravity="top"
             app:cornerRadius="4dp"
+            app:closeButtonVisibility="gone"
             app:tooltipBgColor="#279CFF"
             app:toolTipTitle="ToolBar title"
             app:toolTipMessage="ToolTip Message sample. Lorem ipsum dolor sit amet lorem ipsum"
@@ -42,6 +45,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:text="Example anchored view"
+            android:background="#220099cc"/>
+
+
+    <TextView
+            android:id="@+id/header_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:text="Example anchored view"
             android:background="#220099cc"/>
 

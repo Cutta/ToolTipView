@@ -2,32 +2,30 @@ package com.cunoraz.tooltipviewdemo
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.LinearLayout
+import com.cunoraz.tooltipview.TooltipView
+import com.cunoraz.tooltipview.TooltipView.Companion.LOCATION_BOTTOM
+import com.cunoraz.tooltipview.TooltipView.Companion.LOCATION_TOP
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-/*
-        Handler().postDelayed({
-            showToolTip(centerText, Gravity.TOP)
-        }, 200)
 
-        centerText.setOnClickListener {
-            showToolTip(it, Gravity.TOP)
-        }
-        leftTopText.setOnClickListener {
-            showToolTip(it, Gravity.BOTTOM)
-        }
-        rightTopText.setOnClickListener {
-            showToolTip(it, Gravity.BOTTOM)
-        }
-        rightBottomText.setOnClickListener {
-            showToolTip(it, Gravity.TOP)
-        }
-        leftBottomText.setOnClickListener {
-            showToolTip(it, Gravity.TOP)
-        }*/
+        val tooltipView = TooltipView(this)
+        tooltipView.setAnchoredViewId(R.id.header_4)
+        tooltipView.setTitle("Dynamic Tool Tip Title")
+        tooltipView.setMessage("Dynamic Tool Tip Message body")
+        tooltipView.setArrowPosition(LOCATION_TOP)
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        mainRootLayout.addView(tooltipView,layoutParams)
+
     }
 
 
