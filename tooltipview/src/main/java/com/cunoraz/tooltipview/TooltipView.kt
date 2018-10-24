@@ -16,7 +16,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 
-class TooltipView : LinearLayout {
+class TooltipView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0,
+    defStyleRes: Int = 0
+) : LinearLayout(context, attrs) {
     private var toolTipTitle: String? = null
     private var toolTipMessage: String? = null
 
@@ -36,23 +41,14 @@ class TooltipView : LinearLayout {
     internal var tooltipPaint: Paint? = null
     internal var tooltipPath: Path? = null
 
-
-    constructor(context: Context) : super(context) {
-        init(null, 0)
+    init {
+        init(attrs, defStyle, defStyleRes)
     }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
-    }
-
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
+    private fun init(attrs: AttributeSet?, defStyle: Int, defStyleRes: Int) {
         setWillNotDraw(false)
         val res = resources
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TooltipView, defStyle, 0)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TooltipView, defStyle, defStyleRes)
         try {
             with(typedArray) {
                 toolTipTitle = getString(R.styleable.TooltipView_toolTipTitle)
@@ -88,14 +84,14 @@ class TooltipView : LinearLayout {
                 )
                 closeButtonVisibility = getInteger(R.styleable.TooltipView_closeButtonVisibility, VISIBILITY_VISIBLE)
             }
-        } finally {
-            typedArray.recycle()
 
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             inflater.inflate(R.layout.tooltip_with_title, this, true)
 
             initViews()
 
+        } finally {
+            typedArray.recycle()
         }
     }
 
