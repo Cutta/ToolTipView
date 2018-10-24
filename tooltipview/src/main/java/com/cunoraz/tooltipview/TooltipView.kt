@@ -16,10 +16,12 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 
-class TooltipView @JvmOverloads constructor(context: Context,
-                                            attrs: AttributeSet? = null,
-                                            defStyle: Int = 0,
-                                            defStyleRes: Int = 0) : LinearLayout(context, attrs){
+class TooltipView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0,
+    defStyleRes: Int = 0
+) : LinearLayout(context, attrs) {
     private var toolTipTitle: String? = null
     private var toolTipMessage: String? = null
 
@@ -40,13 +42,13 @@ class TooltipView @JvmOverloads constructor(context: Context,
     internal var tooltipPath: Path? = null
 
     init {
-        init(attrs,defStyle)
+        init(attrs, defStyle, defStyleRes)
     }
 
-    private fun init(attrs: AttributeSet?, defStyle: Int) {
+    private fun init(attrs: AttributeSet?, defStyle: Int, defStyleRes: Int) {
         setWillNotDraw(false)
         val res = resources
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TooltipView, defStyle, 0)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TooltipView, defStyle, defStyleRes)
         try {
             with(typedArray) {
                 toolTipTitle = getString(R.styleable.TooltipView_toolTipTitle)
@@ -82,14 +84,14 @@ class TooltipView @JvmOverloads constructor(context: Context,
                 )
                 closeButtonVisibility = getInteger(R.styleable.TooltipView_closeButtonVisibility, VISIBILITY_VISIBLE)
             }
-        } finally {
-            typedArray.recycle()
 
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             inflater.inflate(R.layout.tooltip_with_title, this, true)
 
             initViews()
 
+        } finally {
+            typedArray.recycle()
         }
     }
 
