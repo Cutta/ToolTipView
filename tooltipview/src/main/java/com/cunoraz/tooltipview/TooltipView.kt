@@ -16,7 +16,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 
-class TooltipView : LinearLayout {
+class TooltipView @JvmOverloads constructor(context: Context,
+                                            attrs: AttributeSet? = null,
+                                            defStyle: Int = 0,
+                                            defStyleRes: Int = 0) : LinearLayout(context, attrs){
     private var toolTipTitle: String? = null
     private var toolTipMessage: String? = null
 
@@ -36,17 +39,8 @@ class TooltipView : LinearLayout {
     internal var tooltipPaint: Paint? = null
     internal var tooltipPath: Path? = null
 
-
-    constructor(context: Context) : super(context) {
-        init(null, 0)
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(attrs, 0)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        init(attrs, defStyle)
+    init {
+        init(attrs,defStyle)
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
